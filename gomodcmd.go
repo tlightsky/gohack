@@ -34,7 +34,7 @@ type listModuleError struct {
 // listModules returns information on the given modules as used by the root module.
 func listModules(modules ...string) (mods map[string]*listModule, err error) {
 	// TODO make runCmd return []byte so we don't need the []byte conversion.
-	args := append([]string{"list", "-m", "-json"}, modules...)
+	args := append([]string{"list", "-m", "-json", "-mod=readonly"}, modules...)
 	out, err := runCmd(cwd, "go", args...)
 	if err != nil {
 		return nil, errors.Wrap(err)
